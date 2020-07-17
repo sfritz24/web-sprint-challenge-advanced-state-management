@@ -1,21 +1,15 @@
-import React, { useEffect } from "react";
-import { connect } from "react-redux";
+import React, {useContext} from 'react';
+import {SmurfContext} from '../Context/SmurfContext';
 
-import {fetchSmurfs} from '../Actions/actions';
+const Smurfs = () =>{
 
-const Pokemon = props =>{
-
-    useEffect(() =>{
-        props.fetchSmurfs();
-    }, []);
+    const {smurfs} = useContext(SmurfContext)
 
     return (
         <div>
-            {props.isLoading && <h4>Loading Data...</h4>}
-            {props.error && <p style='color:red;'>There was an error: {props.error}</p>}
-            {props.smurfs.length > 0 && (
+            {smurfs.length > 0 && (
                 <div>
-                    {props.smurfs.map(smurfs =>(
+                    {smurfs.map(smurfs =>(
                         <div key={smurfs.name} className='smurfs'>
                             <h4>{smurfs.name}</h4>
                             <p>{smurfs.height}</p>
@@ -28,15 +22,4 @@ const Pokemon = props =>{
     );
 };
 
-const mapStateToProps = state =>{
-    return {
-        isLoading: state.isLoading,
-        smurfs: state.smurfs,
-        error: state.error
-    };
-};
-
-export default connect(
-    mapStateToProps,
-    {fetchSmurfs}
-)(Pokemon);
+export default Smurfs;
