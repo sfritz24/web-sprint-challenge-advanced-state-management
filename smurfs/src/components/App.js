@@ -1,5 +1,12 @@
 import React, { Component } from "react";
 import "./App.css";
+
+export const initialState ={
+  isLoading: false,
+  smurfs: [],
+  error: ''
+};
+
 class App extends Component {
   render() {
     return (
